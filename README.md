@@ -3,13 +3,10 @@
 Meta-learning framework for protein family classification using Prototypical Networks.
 Trains a neural encoder to embed raw amino acid sequences into a metric space where proteins from the same family cluster together — enabling few-shot recognition of unseen families.
 
-⸻
 ## Project Overview
 
 This project applies few-shot learning (Prototypical Networks) to bioinformatics, teaching a model to generalize to new protein families using only a handful of examples.
 It leverages deep embeddings and distance-based reasoning to identify functional or structural similarities between proteins.
-
-⸻
 
 ## Key Features
 	•	Protein sequence preprocessing from Pfam FASTA files
@@ -18,7 +15,6 @@ It leverages deep embeddings and distance-based reasoning to identify functional
 	•	Evaluation notebooks for prototype visualization and embeddings
 	•	Compatible with PyTorch + MPS/CUDA
 
-⸻
 ## Tech Stack
 	•	Python 3.9+
 	•	PyTorch
@@ -27,7 +23,6 @@ It leverages deep embeddings and distance-based reasoning to identify functional
 	•	UMAP-learn (for embedding visualization)
 	•	(Optional upcoming): Streamlit / Next.js dashboard for interactive analysis
 
-⸻
  ## Repository Structure
 
 Protein-fewshot/
@@ -55,8 +50,6 @@ Protein-fewshot/
 └── README.md               # (this file)
 
 
-⸻
-
  ## Quick Start
 
 git clone https://github.com/<your-username>/Protein-fewshot.git
@@ -71,8 +64,6 @@ python train_protonet.py
 # Evaluate results
 jupyter notebook notebooks/day4_evaluation.ipynb
 
-
-⸻
 
 ## Next Steps
 	•	✅ Model training (done)
