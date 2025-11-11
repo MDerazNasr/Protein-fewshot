@@ -33,6 +33,26 @@ def compute_pca(X, random_state=42):
     return pca.fit_transform(X)
 
 
+# ---- Cached loader for embeddings ----
+@st.cache_data(show_spinner=False)
+def load_embeddings(path: Path):
+    """
+    Cached loader that returns:
+    - data: dict[family] -> list[list[float]]
+    - df: flattened DataFrame with columns family,d0..d{D-1}
+    - feat_cols: list of embedding column names
+    """
+    with open(path, "r") as f:
+        data = json.load(f)
+    rows = []
+    for fam, vecs in data.items():
+        for v in vecs:
+            rows.append({"family": fam, **{f"d{i}": v[i] for i in range(len(v))}})
+    df = pd.DataFrame(rows)
+    feat_cols = [c for c in df.columns if c.startswith("d")]
+    return data, df, feat_cols
+
+
 # Resolve project root dynamically (one level above)
 ROOT = Path(os.getcwd()).resolve()
 RESULTS_PATH = ROOT / "results" / "embeddings.json"
@@ -65,22 +85,13 @@ if not RESULTS_PATH.exists():
     st.info("Run the embedding generation notebook first to create it.")
     st.stop()
 
-# Load embeddings
-with open(RESULTS_PATH, "r") as f:
-    data = json.load(f)
-
-# Flatten into a DataFrame
-rows = []
-for fam, vecs in data.items():
-    for v in vecs:
-        rows.append({"family": fam, **{f"d{i}": v[i] for i in range(len(v))}})
-df = pd.DataFrame(rows)
+# Load embeddings (cached)
+data, df, feat_cols = load_embeddings(RESULTS_PATH)
 
 # ---- Projection choice (PCA is safer on macOS; UMAP uses numba and can crash in some envs) ----
 st.sidebar.header("Projection")
 proj_method = st.sidebar.radio("2D projection", ["PCA (stable)", "UMAP (fast)"], index=0)
 
-feat_cols = [c for c in df.columns if c.startswith("d")]
 X_feats = df[feat_cols].to_numpy()
 
 try:
@@ -95,6 +106,9 @@ except Exception as e:
     Z = compute_pca(X_feats)
 
 df["x"], df["y"] = Z[:, 0], Z[:, 1]
+
+# Keep a reference for downloads / search
+embeddings = data
 
 # ---- Protein Search Engine (Streamlit UI) ----
 # Flatten embeddings and keep a stable global index for plotting/highlighting
@@ -195,3 +209,24 @@ else:
                              name=f"Top-{top_k}")
 
     st.plotly_chart(base_fig, use_container_width=True)
+
+    # ---- Downloads ----
+    st.subheader("Download embeddings")
+    col_json, col_csv = st.columns(2)
+    with col_json:
+        st.download_button(
+            label="Download embeddings.json",
+            data=json.dumps(embeddings).encode("utf-8"),
+            file_name="embeddings.json",
+            mime="application/json",
+            use_container_width=True,
+        )
+    with col_csv:
+        csv_bytes = df.to_csv(index=False).encode("utf-8")
+        st.download_button(
+            label="Download embeddings.csv",
+            data=csv_bytes,
+            file_name="embeddings.csv",
+            mime="text/csv",
+            use_container_width=True,
+        )
