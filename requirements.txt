@@ -1,0 +1,6 @@
+torch>=2.2
+pandas
+plotly
+umap-learn
+scikit-learn
+streamlit
