@@ -2,7 +2,6 @@
 import torch
 from utils.episodes import EpisodeSampler, loaded_encoded_families
 from data.configs.protonet import CONF
-
 fams = loaded_encoded_families(CONF["encoded_dir"])
 sampler = EpisodeSampler(fams, N=CONF["N"], K=CONF["K"], Q=CONF["Q"], device="cpu")
 
