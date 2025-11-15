@@ -1,6 +1,6 @@
 ### Few-Shot Protein Family Classification with Prototypical Networks
 
-##Metric learning for biological sequence understanding 
+## Metric learning for biological sequence understanding 
     • CNN encoder 
     • Embedding analysis 
     • Interactive visualization
