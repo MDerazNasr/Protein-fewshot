@@ -81,7 +81,7 @@ Saved to: results/failures.json
 ##Embedding Visualization
 
 <div align="center">
-<img src="results/prototype_distance_heatmap.png" width="420px">
+<img src="results/prototype_distance_heatmap.png" width="700px">
 </div>
 
 Installation
