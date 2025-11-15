@@ -71,19 +71,19 @@ Saved to: results/failures.json
 
 Embedding Visualization
 
-✔ PCA + UMAP projections
+PCA + UMAP projections
 
-✔ Interactive analysis dashboard (Plotly)
+Interactive analysis dashboard (Plotly)
 
-✔ Family search & filtering
+Family search & filtering
 
-✔ Hover tooltips (norm, distances, family)
+Hover tooltips (norm, distances, family)
 
-✔ Nearest-neighbor inspection
+Nearest-neighbor inspection
 
-✔ Export filtered CSV / HTML
+Export filtered CSV / HTML
 
-✔ Visual anatomy of embedding clusters
+Visual anatomy of embedding clusters
 
 Artifacts generated in results/:
 
@@ -99,45 +99,7 @@ summary.json
 Notebook:
 notebooks/03_visualization_dashboard.ipynb
 
-⸻
-
-4. Repository Structure
-
-protein-fewshot/
-│
-├── README.md                    # ← You are here
-├── requirements.txt
-├── LICENSE
-│
-├── data/
-│   └── encoded/                 # Protein families (.pt)
-│
-├── models/
-│   ├── encoder_cnn.py           # 1D CNN encoder
-│   └── prototypical.py          # ProtoNet utilities
-│
-├── notebooks/
-│   ├── 01_export_embeddings.ipynb
-│   ├── 02_fewshot_evaluation.ipynb
-│   └── 03_visualization_dashboard.ipynb
-│
-├── scripts/
-│   ├── export_embeddings.py
-│   ├── eval_episodes.py
-│   └── build_dashboard_data.py
-│
-└── results/
-    ├── embeddings.json
-    ├── summary.json
-    ├── pca_embeddings.png
-    ├── confusion_cosine.png
-    ├── plot_interactive.html
-    ├── filtered_embeddings.csv
-    ├── failures.json
-    └── kq_grid.png
-
-
-5. Installation
+Installation
 
 git clone https://github.com/<your-username>/protein-fewshot
 cd protein-fewshot
