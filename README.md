@@ -80,10 +80,8 @@ Saved to: results/failures.json
 
 ##Embedding Visualization
 
-Confusion matrix to measure model accuracy
-
 <div align="center">
-<img src="results/confusion_cosine.png" width="420px">
+<img src="results/prototype_distance_heatmap.png" width="420px">
 </div>
 
 Installation
