@@ -86,8 +86,8 @@ Saved to: results/failures.json
 
 Installation
 
-git clone https://github.com/<your-username>/protein-fewshot
-cd protein-fewshot
-pip install -r requirements.txt
+- git clone https://github.com/<your-username>/protein-fewshot
+- cd protein-fewshot
+- pip install -r requirements.txt
 
 
