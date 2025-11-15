@@ -1,32 +1,40 @@
 ### Few-Shot Protein Family Classification with Prototypical Networks
 
-## Metric learning for biological sequence understanding 
-    • CNN encoder 
-    • Embedding analysis 
-    • Interactive visualization
+Meta-learning framework for protein family classification using Prototypical Networks.
+Trains a neural encoder to embed raw amino acid sequences into a metric space where proteins from the same family cluster together — enabling few-shot recognition of unseen families.
 
 <div align="center">
 <img src="results/pca_embeddings.png" width="420px">
 </div>
 
-## Overview
+## Project Overview
 
-Built an end-to-end few-shot learning system for classifying protein families using Prototypical Networks and a 1D CNN encoder.
+This project applies few-shot learning (Prototypical Networks) to bioinformatics, teaching a model to generalize to new protein families using only a handful of examples.
+It leverages deep embeddings and distance-based reasoning to identify functional or structural similarities between proteins.
 
-##Motivation
+## Key Features
+	•	Protein sequence preprocessing from Pfam FASTA files
+	•	1D-CNN encoder trained on amino-acid token sequences
+	•	Few-shot learning episodes via Prototypical Networks
+	•	Evaluation notebooks for prototype visualization and embeddings
+	•	Compatible with PyTorch + MPS/CUDA
 
-Most protein families have very few labeled examples. Traditional supervised learning fails when:
-	•	a class has <10 sequences
-	•	new families emerge with almost zero examples
-	•	datasets are heavily imbalanced
+## Tech Stack
+	•	Python 3.9+
+	•	PyTorch
+	•	Biopython
+	•	NumPy / Matplotlib / Pandas
+	•	UMAP-learn (for embedding visualization)
+	•	(Optional upcoming): Streamlit / Next.js dashboard for interactive analysis
 
-Few-shot learning directly addresses this by training the model to generalize from N-way K-shot episodes.
+ ## Quick Start
 
-## This project answers:
+git clone https://github.com/<your-username>/Protein-fewshot.git
+cd Protein-fewshot
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 
-Can we learn a general-purpose embedding space where proteins cluster by family, and can we classify new families with as few as 5 examples?
-
-Spoiler: Yes
 
 ##Method Summary
 
